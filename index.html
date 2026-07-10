@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To the Man We Call Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="loader" class="loader" aria-live="polite">
+    <div class="loader-card">
+      <span class="loader-mark">For Dadu</span>
+      <p>Gathering the memories...</p>
+    </div>
+  </div>
+
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <section id="giftScreen" class="gift-screen" aria-label="Opening gift screen">
+    <div class="particles" aria-hidden="true"></div>
+    <div class="gift-copy">
+      <p class="opening-line">Some people leave footprints.</p>
+      <p class="opening-line">Others build a path for everyone else.</p>
+      <p class="opening-line">This is for you, Dadu.</p>
+      <button id="openGift" class="primary-btn">Open Your Gift</button>
+    </div>
+  </section>
+
+  <!-- Replace this MP3 with Dadu's soft background music. Keep the same filename or update script.js if renamed. -->
+  <audio id="backgroundMusic" loop preload="none">
+    <source src="assets/music/background-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <nav id="navbar" class="navbar" aria-label="Primary navigation">
+    <a href="#home" class="brand">Dadu</a>
+    <button id="menuToggle" class="icon-btn menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <div id="navLinks" class="nav-links">
+      <a href="#memories">Photos</a>
+      <a href="#letters">Letters</a>
+      <a href="#favourite-things">Love Notes</a>
+      <a href="#surprise">Surprise</a>
+      <button id="musicToggle" class="music-toggle" aria-label="Mute music" aria-pressed="false">Music On</button>
+    </div>
+  </nav>
+
+  <main id="mainSite" class="site-shell" tabindex="-1">
+    <!-- Replace photos inside assets/images. The current site already uses the family photos you shared. -->
+    <section id="home" class="hero section">
+      <div class="hero-photo-wrap">
+        <img class="hero-photo parallax-photo" src="assets/images/hero-photo.jpg" alt="Dadu surrounded by family at home" />
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content reveal">
+        <p class="eyebrow">A digital card for Dadu</p>
+        <h1>To the Man We Call Home</h1>
+        <p class="subtitle">A little digital card made with love, just for you.</p>
+      </div>
+    </section>
+
+    <section class="welcome section paper-section">
+      <div class="section-inner narrow reveal">
+        <p>Every family has someone who quietly becomes its strength.</p>
+        <p>Someone who teaches without even realising it.</p>
+        <p>Someone whose presence makes every gathering feel complete.</p>
+        <p>This little card is dedicated to you.</p>
+        <p class="handwritten">With all our love.</p>
+      </div>
+      <div class="card-actions reveal" aria-label="Open parts of Dadu's card">
+        <a href="#memories">Open the Photos</a>
+        <a href="#letters">Read the Letters</a>
+        <a href="#memory-jar">Pick a Memory</a>
+        <a href="#surprise">Find the Surprise</a>
+      </div>
+    </section>
+
+    <section id="who-you-are" class="section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Who You Are to Us</p>
+        <h2>So many roles, one irreplaceable heart.</h2>
+      </div>
+      <div id="roleCards" class="role-grid"></div>
+    </section>
+
+    <section id="memories" class="section gallery-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Memory Gallery</p>
+        <h2>Photographs that still feel warm.</h2>
+      </div>
+      <div id="galleryGrid" class="polaroid-grid"></div>
+    </section>
+
+    <section id="letters" class="section letters-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Letters to You</p>
+        <h2>Words folded with love.</h2>
+      </div>
+      <div id="letterGrid" class="letter-grid"></div>
+    </section>
+
+    <section id="favourite-things" class="section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">The Things We Love About You</p>
+        <h2>All the ways you make life gentler.</h2>
+      </div>
+      <div id="qualitiesGrid" class="qualities-grid"></div>
+    </section>
+
+    <section id="memory-jar" class="section jar-section paper-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Memory Jar</p>
+        <h2>Pick one small memory at a time.</h2>
+      </div>
+      <div class="jar-stage reveal">
+        <button id="memoryJar" class="memory-jar" aria-label="Pick a memory from the jar">
+          <span class="jar-lid"></span>
+          <span class="jar-glass"></span>
+          <span class="jar-notes"></span>
+        </button>
+        <div id="memoryNote" class="memory-note" aria-live="polite">Click the jar to pull out a memory.</div>
+        <div class="jar-actions">
+          <button id="pickMemory" class="secondary-btn">Pick a Memory</button>
+          <button id="pickAnother" class="secondary-btn">Pick Another</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="surprise" class="section surprise-section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Hidden Surprise</p>
+        <h2>A tiny corner for the candid ones.</h2>
+      </div>
+      <div class="surprise-box reveal">
+        <p id="surpriseWarning" class="surprise-warning" aria-live="polite">This button has a mind of its own.</p>
+        <button id="surpriseBtn" class="primary-btn">Do Not Click</button>
+        <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+        <div id="hiddenGallery" class="hidden-gallery" hidden>
+          <p class="handwritten">Some memories are too good to keep hidden.</p>
+          <div id="funnyGrid" class="funny-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="finale" class="finale section">
+      <img src="assets/images/final-family-photo.jpg" alt="Dadu surrounded by family" />
+      <div class="finale-overlay"></div>
+      <div class="finale-content reveal">
+        <p>Home is not always a place.</p>
+        <p>Sometimes, it is a person.</p>
+        <p>Thank you for being ours.</p>
+        <h2>Happy Birthday, Dadu.</h2>
+        <p class="subtitle">We love you more than words can hold.</p>
+        <button id="lastThing" class="primary-btn">One Last Thing</button>
+      </div>
+    </section>
+  </main>
+
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+
+  <div id="roleModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="roleModalTitle">
+    <div class="modal-panel">
+      <button class="modal-close" data-close-modal aria-label="Close">×</button>
+      <img id="roleModalImage" src="" alt="" />
+      <h3 id="roleModalTitle"></h3>
+      <p id="roleModalText"></p>
+    </div>
+  </div>
+
+  <div id="letterModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="letterModalTitle">
+    <div class="modal-panel letter-paper">
+      <button class="modal-close" data-close-modal aria-label="Close">×</button>
+      <h3 id="letterModalTitle"></h3>
+      <p id="letterModalText"></p>
+      <p id="letterModalSignature" class="handwritten"></p>
+    </div>
+  </div>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button id="lightboxClose" class="lightbox-close" aria-label="Close photo">×</button>
+    <button id="lightboxPrev" class="lightbox-nav prev" aria-label="Previous photo">‹</button>
+    <figure>
+      <img id="lightboxImage" src="" alt="" />
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button id="lightboxNext" class="lightbox-nav next" aria-label="Next photo">›</button>
+  </div>
+
+  <div id="finalSequence" class="final-sequence" aria-hidden="true">
+    <div class="final-sequence-text">
+      <p id="finalLineOne">Every photograph here captures a memory...</p>
+      <p id="finalLineTwo">But our favourite gift is simply having you in our lives.</p>
+    </div>
+    <div class="final-photo-card">
+      <img src="assets/images/final-family-photo.jpg" alt="A final family memory with Dadu" />
+      <span class="signature sig-one">With love, Anika</span>
+      <span class="signature sig-two">Your family</span>
+      <span class="signature sig-three">Always yours</span>
+    </div>
+    <button id="replaySite" class="primary-btn">Replay From the Beginning</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
